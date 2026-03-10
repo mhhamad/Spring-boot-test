@@ -1,14 +1,17 @@
 # Use Java 21 base image
 FROM eclipse-temurin:21-jdk-alpine
 
-# Build argument (path to jar)
-ARG JAR_FILE=target/*.jar
+# Working directory
+WORKDIR /app
 
-# Copy jar file into container
+# Build argument
+ARG JAR_FILE=target/SpringBoot_2-0.0.1-SNAPSHOT.jar
+
+# Copy jar file
 COPY ${JAR_FILE} app.jar
 
-# Expose Spring Boot port
+# Expose port
 EXPOSE 8080
 
 # Run the application
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
